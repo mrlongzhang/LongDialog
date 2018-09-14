@@ -1,10 +1,10 @@
 # Long Dialog
 
-[![Join the chat at https://gitter.im/chatbot-pilots/DeepQA](https://badges.gitter.im/chatbot-pilots/DeepQA.svg)](https://gitter.im/chatbot-pilots/DeepQA?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ## Introduction
 
-Long's private dialog research toolkit. This toolkit is based on [DeepQA](https://github.com/abs/deeqqa). My focus is on model, so the boiler-plate modules of DeepQA were left intact. However, DeeqQA's seq2seq modul were dropped as it used legacy rnn code. In addition, further models could be added. All modules were upgraded when necessary.
+Long's private dialog research toolkit. This toolkit is based on [DeepQA](https://github.com/abs/deeqqa). My focus is on model, so the boiler-plate modules of DeepQA were left intact. However, DeeqQA's seq2seq module was dropped as it used legacy rnn code, where attention mechanism is awfull (slow, low efficiency, not working sometimes). In addition, further models could be added. All modules were upgraded when necessary.
 
 DeepQA features a structured corpus handling module. For more information, please kindly visit DeepQA. 
 
@@ -93,7 +93,7 @@ We could never reproduce the orginal DeepQA's dialog samples as we only trained 
 
 You can find a pre-trained model [here](https://drive.google.com/file/d/0Bw-phsNSkq23OXRFTkNqN0JGUU0/view?usp=sharing), trained of the default corpus. To use it:
 
-1. Extract the zip file inside `DeepQA/save/`
+1. Extract the zip file inside `LongDialog/save/`
 2. Copy the preprocessed dataset from `save/model-pretrainedv2/dataset-cornell-old-lenght10-filter0-vocabSize0.pkl` to `data/samples/`.
 3. Run `./main.py --modelTag pretrainedv2 --test interactive`.
 
@@ -103,12 +103,14 @@ If you have a high-end GPU, don't hesitate to play with the hyper-parameters/cor
 
 ## Future works
 
-Currently, a basic seq2seq model [Cho et al., 2014][c1]. barely have memory capability, which is vital for consistency and stable multi-round talk. But that's a long term goal, so far. 
+Currently, a basic seq2seq model [Cho et al., 2014][c1] is implemented. It has attention mechanism plus beam search capapbility. It barely have memory capability, which is vital for consistency and stable multi-round talk. But that's a long term goal, so far. 
 
 * A much less ambitouse goal would be an antiLM model [Jiwei Li et al.][c3] to improve one round dialog first. 
 * Add peronality capability to the bot.
 * Employ reading comprehension NN to improve the bot's reasoning capapbility.
 * Employ memory NN to develop multi-round dialog capapbility.
+* GAN for generative output
+* Reinforcement learning
 * ...
 * In the end, for a bot to be useful, knowledge graph technology would be really helpful.
 
