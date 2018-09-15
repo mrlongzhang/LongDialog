@@ -17,6 +17,7 @@
 Loads the dialogue corpus, builds the vocabulary
 """
 
+
 import numpy as np
 import nltk  # For tokenize
 from tqdm import tqdm  # Progress bar
