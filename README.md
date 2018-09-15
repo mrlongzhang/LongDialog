@@ -49,57 +49,24 @@ By default, the network architecture is a standard encoder/decoder with four GRU
 
 ## Results
 
-We could never reproduce the orginal DeepQA's dialog samples as we only trained the system with Cornell's dataset. Theirs were amazing, ours sucks.
+We could never reproduce the orginal DeepQA's dialog samples as we only trained the system with only Cornell's dataset. Theirs were amazing, ours sucks. However, it can be seen that the discrepency is mainly contributed by the dataset.
 
-    Q: Hi
-    A: Hi.
-    
-    Q: What is your name ?
-    A: Laura.
-    
-    Q: What does that mean ?
-    A: I dunno.
-    
-    Q: How old are you ?
-    A: thirty-five.
-    
-    Q: Will Google hire me ?
-    A: No.
-    
-    Q: Tell me the alphabet
-    A: Fuck you.
-    
-    Q: That's not nice
-    A: Yeah.
-    
-    
-    
-    Q: My name is David. What is my name ?
-    A: Debbie.
-    
-    Q: My name is John. What is my name ?
-    A: Carl Smith.
-    
-    Q: How many legs does a cat have ?
-    A: Four.
-    
-    Q: How many legs does a spider have ?
-    A: Four.
-    
-    Q: Do you prefer football or soccer ?
-    A: Whiskey.
+Q: hi
+A: hi, mrs. robinson.
+
+Q: how are you?
+A: I am fine.
+
+Q: what is your name?
+A: I am working on.
+
+Q: How old are you?
+A: I am fine.
+
+
 
 ## Pretrained model
-
-You can find a pre-trained model [here](https://drive.google.com/file/d/0Bw-phsNSkq23OXRFTkNqN0JGUU0/view?usp=sharing), trained of the default corpus. To use it:
-
-1. Extract the zip file inside `LongDialog/save/`
-2. Copy the preprocessed dataset from `save/model-pretrainedv2/dataset-cornell-old-lenght10-filter0-vocabSize0.pkl` to `data/samples/`.
-3. Run `./main.py --modelTag pretrainedv2 --test interactive`.
-
-Thanks to Nicholas C., [here](https://drive.google.com/drive/folders/0Bw-phsNSkq23c29ZQ2N6X3lyc1U?usp=sharing) ([original](https://mcastedu-my.sharepoint.com/personal/nicholas_cutajar_a100636_mcast_edu_mt/_layouts/15/guestaccess.aspx?folderid=077576c4cf9854642a968f67909380f45&authkey=AVt2JWMPkf2R_mWBpI1eAUY)) are some additional pre-trained models (compatible with TF 1.2) for diverse datasets. The folder also contains the pre-processed dataset for Cornell, OpenSubtitles, Ubuntu and Scotus (to move inside `data/samples/`). Those are required is you don't want to process the datasets yourself.
-
-If you have a high-end GPU, don't hesitate to play with the hyper-parameters/corpus to train a better model. From my experiments, it seems that the learning rate and dropout rate have the most impact on the results. Also if you want to share your models, don't hesitate to contact me and I'll add it here.
+Currently, there is no pre-trained model yet. Soon it will be here.
 
 ## Future works
 
