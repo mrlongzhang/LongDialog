@@ -154,8 +154,8 @@ class TextData:
         batch = Batch()
         batchSize = len(samples)
 
-        batch.encoderSeqsLength = [len(sample[0]) for sample in samples]
-        batch.targetSeqsLength = [len(sample[1]) for sample in samples]
+        batch.encoderSeqsLength = [len(sample[0])+2 for sample in samples]
+        batch.targetSeqsLength = [len(sample[1])+2 for sample in samples]
         maxLengthEnco = max(batch.encoderSeqsLength)
         maxLengthDeco = max(batch.targetSeqsLength)
         #print(maxLengthDeco)
@@ -184,10 +184,10 @@ class TextData:
 
             # TODO: Should use tf batch function to automatically add padding and batch samples
             # Add padding & define weight
-            batch.encoderSeqs[i]   = [self.padToken] * (maxLengthEnco  - len(batch.encoderSeqs[i])) + batch.encoderSeqs[i]  # Left padding for the input
+            batch.encoderSeqs[i]   = [self.padToken] * (maxLengthEnco  - 2 - len(batch.encoderSeqs[i])) + [self.eosToken] + batch.encoderSeqs[i] + [self.goToken]  # Left padding for the input
             batch.weights.append([1.0] * len(batch.targetSeqs[i]) + [0.0] * (maxLengthDeco - len(batch.targetSeqs[i])))      
-            batch.decoderSeqs[i] = batch.decoderSeqs[i] + [self.padToken] * (maxLengthDeco - len(batch.decoderSeqs[i]))
-            batch.targetSeqs[i]  = batch.targetSeqs[i]  + [self.padToken] * (maxLengthDeco - len(batch.targetSeqs[i]))
+            batch.decoderSeqs[i] = [self.goToken] + batch.decoderSeqs[i] + [self.eosToken] + [self.padToken] * (maxLengthDeco - 2 - len(batch.decoderSeqs[i]))
+            batch.targetSeqs[i]  = batch.targetSeqs[i] +[self.eosToken]  + [self.padToken] * (maxLengthDeco - 1 - len(batch.targetSeqs[i]))
 
         # now the orientation correction is not necessary anymore?
         # Simple hack to reshape the batch
